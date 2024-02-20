@@ -28,11 +28,13 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  padding-left: 25px;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin-top: -375px;
 }
 
 button {
