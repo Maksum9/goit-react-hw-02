@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Options from './components/Options/Options';
 import Feedback from './components/Feedback/Feedback';
 import Descriptions from './components/Descriptions/Descriptions';
-import css from './components/App.module.css'
+
 
 const App = () => {
   const [feedbackCounts, setFeedbackCounts] = useState({
