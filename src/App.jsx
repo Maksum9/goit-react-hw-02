@@ -49,7 +49,7 @@ const App = () => {
       {totalFeedback > 0 ? (
         <Feedback feedbackCounts={feedbackCounts} totalFeedback={totalFeedback} positivePercentage={positivePercentage} />
       ) : (
-        null
+      null
       )}
     </>
   );
@@ -58,3 +58,4 @@ const App = () => {
 
 
 export default App;
+
