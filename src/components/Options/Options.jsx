@@ -1,5 +1,4 @@
 
-
 const Options = ({ updateFeedback, handleReset, totalFeedback }) => {
   return (
     <div className="btn">

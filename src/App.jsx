@@ -2,14 +2,25 @@ import { useState, useEffect } from 'react';
 import Options from './components/Options/Options';
 import Feedback from './components/Feedback/Feedback';
 import Descriptions from './components/Descriptions/Descriptions';
-
+import Notification from './components/Notification/Notification';
 
 const App = () => {
-  const [feedbackCounts, setFeedbackCounts] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0
-  });
+
+  const initializeFeedbackCounts = () => {
+    const storedCounts = JSON.parse(localStorage.getItem('feedbackCounts'));
+
+    if (storedCounts) {
+      return storedCounts;
+    } else {
+      return {
+        good: 0,
+        neutral: 0,
+        bad: 0
+      };
+    }
+  };
+
+  const [feedbackCounts, setFeedbackCounts] = useState(initializeFeedbackCounts);
 
   const updateFeedback = (feedbackType) => {
     setFeedbackCounts((prevCounts) => ({
@@ -31,14 +42,7 @@ const App = () => {
   const positivePercentage = Math.round(((feedbackCounts.good + feedbackCounts.neutral) / totalFeedback) * 100);
 
   useEffect(() => {
-    const storedCounts = JSON.parse(localStorage.getItem('feedbackCounts'));
 
-    if (storedCounts) {
-      setFeedbackCounts(storedCounts);
-    }
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem('feedbackCounts', JSON.stringify(feedbackCounts));
   }, [feedbackCounts]);
 
@@ -49,13 +53,10 @@ const App = () => {
       {totalFeedback > 0 ? (
         <Feedback feedbackCounts={feedbackCounts} totalFeedback={totalFeedback} positivePercentage={positivePercentage} />
       ) : (
-      null
+        <Notification message="No feedback yet" />
       )}
     </>
   );
-
 };
 
-
 export default App;
-
